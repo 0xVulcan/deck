@@ -10,7 +10,7 @@ them in one click, with no setup.
 
 ## Download
 
-Get **Deck-0.4.0.dmg** from [Releases](../../releases/latest), open it, and drag Deck to
+Get **Deck-0.5.0.dmg** from [Releases](../../releases/latest), open it, and drag Deck to
 Applications.
 
 - macOS 14 Sonoma or later, Apple silicon and Intel
@@ -33,6 +33,12 @@ Dock icon appears only while that window is open.
 - **Status and logs.** Running, Starting, Stopped or Crashed with the last log lines. For
   services Deck starts, output goes to a live log panel. Services keep running when Deck
   quits, and Deck picks them up again on relaunch.
+- **Add services by hand.** New Service suggests start commands from the project's files
+  (`package.json` scripts, `manage.py`, `Cargo.toml`, `go.mod`, Procfile and more).
+- **Run services on other machines over SSH.** Pick a host from `~/.ssh/config` and choose
+  **SSH + port forward** (the port is tunnelled to `localhost` on your Mac) or **purely
+  remote**. Start, stop, restart, status and live logs work the same as for local services.
+  Deck uses your SSH keys and agent only and never asks for or stores a password.
 - **Flags exposure.** A badge when a service listens on `0.0.0.0` or `::`, so it's reachable
   from your network, not just this Mac.
 - **Settings.** Launch at login, start chosen services with Deck, ignore ports or processes,
@@ -40,7 +46,8 @@ Dock icon appears only while that window is open.
 
 ## Privacy
 
-Deck makes no network connections: no telemetry, no analytics, no update checks. It reads
+Deck makes no network connections of its own: no telemetry, no analytics, no update checks.
+The only connections are the SSH sessions you set up for remote services. It reads
 process information through macOS's own process APIs and never runs `lsof` or `ps`. It is
 not sandboxed, because inspecting other processes and starting commands requires that.
 
@@ -50,7 +57,8 @@ Deck keeps its data in your home folder:
 | --- | --- |
 | Saved services (commands it may run) | `~/Library/Application Support/Deck/services.json` |
 | Processes Deck started, for re-attaching | `~/Library/Application Support/Deck/state.json` |
-| Service output | `~/Library/Logs/Deck/` |
+| Remote services Deck started | `~/Library/Application Support/Deck/remote.json` |
+| Service output | `~/Library/Logs/Deck/` (remote services: `~/.deck/logs/` on the host) |
 
 Nothing starts automatically unless you turn on **Start when Deck launches** for that
 service, and never from a `services.json` that other users can edit.
