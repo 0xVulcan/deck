@@ -1,4 +1,8 @@
-# Deck
+<p align="center">
+  <img src="assets/deck-icon.png" width="128" height="128" alt="Deck app icon">
+</p>
+
+<h1 align="center">Deck</h1>
 
 Deck is a native macOS menu bar app for developers. It finds the dev servers you already
 have running, works out how each one was started, and lets you save, stop, start and restart
