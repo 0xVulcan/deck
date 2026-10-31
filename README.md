@@ -60,4 +60,4 @@ Quit Deck, move it from Applications to the Trash, and optionally delete the fol
 Deck isn't open source yet; the source will be published later. Until then this repository
 holds releases only. Bug reports and ideas are welcome in [Issues](../../issues).
 
-© 2026 0xVulcan. All rights reserved.
+© 2026 Aditya Patil. All rights reserved.
