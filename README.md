@@ -10,7 +10,7 @@ them in one click, with no setup.
 
 ## Download
 
-Get **Deck-0.5.0.dmg** from [Releases](../../releases/latest), open it, and drag Deck to
+Get **Deck-0.6.0.dmg** from [Releases](../../releases/latest), open it, and drag Deck to
 Applications.
 
 - macOS 14 Sonoma or later, Apple silicon and Intel
@@ -39,6 +39,14 @@ Dock icon appears only while that window is open.
   **SSH + port forward** (the port is tunnelled to `localhost` on your Mac) or **purely
   remote**. Start, stop, restart, status and live logs work the same as for local services.
   Deck uses your SSH keys and agent only and never asks for or stores a password.
+- **Stable local addresses.** Every saved service answers at `http://<name>.localhost` (and
+  `<name>.local`) whatever port it's on today, so it can be installed as a web app. Deck
+  serves these on this Mac only.
+- **Auto-restart, environment and groups.** Restart a service automatically when it crashes
+  (with backoff, giving up after 3 tries in 10 minutes), set environment variables or a
+  `.env` file per service, and start several services in order as a group.
+- **Homebrew services and Docker containers.** Start, stop, restart and follow the logs of
+  `brew services` and Docker containers from the same window.
 - **Flags exposure.** A badge when a service listens on `0.0.0.0` or `::`, so it's reachable
   from your network, not just this Mac.
 - **Settings.** Launch at login, start chosen services with Deck, ignore ports or processes,
@@ -59,6 +67,9 @@ Deck keeps its data in your home folder:
 | Processes Deck started, for re-attaching | `~/Library/Application Support/Deck/state.json` |
 | Remote services Deck started | `~/Library/Application Support/Deck/remote.json` |
 | Service output | `~/Library/Logs/Deck/` (remote services: `~/.deck/logs/` on the host) |
+
+Local addresses are served on `127.0.0.1:80` and `[::1]:80` only, and `.local` names are
+registered for this Mac only, never announced on your network.
 
 Nothing starts automatically unless you turn on **Start when Deck launches** for that
 service, and never from a `services.json` that other users can edit.
